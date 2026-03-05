@@ -132,15 +132,30 @@
   transition: transform .3s ease;
 }
 @media (max-width: 768px) {
-  #side { transform: translateX(-100%); z-index: 600; width: min(var(--side), 85vw); }
+  #side {
+    transform: translateX(-100%);
+    z-index: 600;
+    width: min(var(--side), 80vw);
+    backdrop-filter: none;
+  }
   #side.open { transform: translateX(0); }
+
+  /* larger touch targets for sidebar nav items */
+  .ni {
+    padding: 14px 16px;
+    font-size: 12px;
+    cursor: pointer;
+  }
+  .nl { font-size: 8.5px; margin-top: 16px; }
+  .nbadge { font-size: 8px; padding: 2px 7px; }
 }
 
 #overlay {
   display: none;
   position: fixed; inset: 0;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0,0,0,0.7);
   z-index: 599;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .nl     { padding: 4px 16px; font-size: 7.5px; letter-spacing: 3px; color: rgba(255,204,51,0.28); margin-top: 12px; text-transform: uppercase; }
