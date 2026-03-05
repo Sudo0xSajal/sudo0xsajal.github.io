@@ -19,11 +19,9 @@
   <canvas id="bgc"></canvas>
 
   <!-- SIDEBAR OVERLAY (mobile) -->
-  <div id="overlay" onclick="closeSide()"></div>
+  <div id="overlay"></div>
 
-  <!-- ══════════════════════════════════════
-       BOOT SCREEN
-  ══════════════════════════════════════ -->
+  <!-- BOOT SCREEN -->
   <div id="boot">
     <div id="bwrap">
       <span class="blog">AETHEL_OS</span>
@@ -39,15 +37,13 @@
     </div>
   </div>
 
-  <!-- ══════════════════════════════════════
-       MAIN APP
-  ══════════════════════════════════════ -->
+  <!-- MAIN APP -->
   <div id="app">
 
     <!-- TOP BAR -->
     <div id="bar">
       <div style="display:flex;align-items:center;gap:0;">
-        <button id="ham" onclick="toggleSide()" aria-label="Menu">
+        <button id="ham" aria-label="Menu">
           <span></span><span></span><span></span>
         </button>
         <span class="blogo" style="margin-left:10px;">AETHEL_OS</span>
@@ -58,30 +54,30 @@
       </div>
       <div id="bar-r">
         <span id="clk"></span>
-        <button class="tbtn" id="ambbtn" onclick="playAmb()">♫ AMBIENT</button>
-        <button class="tbtn gld" id="encbtn" onclick="toggleGlyph()">◈ DECODE</button>
+        <button class="tbtn" id="ambbtn">♫ AMBIENT</button>
+        <button class="tbtn gld" id="encbtn">◈ DECODE</button>
       </div>
     </div>
 
     <!-- SIDEBAR -->
     <div id="side">
       <div class="nl">/ ROOT /</div>
-      <div class="ni on" onclick="nav('bio')" data-p="bio"><span class="ni-ic">◉</span>/root/bio/<span class="nbadge">BIO</span></div>
+      <button class="ni on" data-p="bio"><span class="ni-ic">◉</span>/root/bio/<span class="nbadge">BIO</span></button>
 
       <div class="nl">/ ARCHIVES /</div>
-      <div class="ni" onclick="nav('tools')"    data-p="tools">   <span class="ni-ic">⊕</span>/archives/toolset/  <span class="nbadge">8</span></div>
-      <div class="ni" onclick="nav('skills')"   data-p="skills">  <span class="ni-ic">◈</span>/archives/skills/   <span class="nbadge">CAP</span></div>
-      <div class="ni" onclick="nav('projects')" data-p="projects"><span class="ni-ic">◇</span>/archives/projects/ <span class="nbadge">4</span></div>
-      <div class="ni" onclick="nav('cli')"      data-p="cli">     <span class="ni-ic">▶</span>/archives/terminal/ <span class="nbadge">CLI</span></div>
+      <button class="ni" data-p="tools"><span class="ni-ic">⊕</span>/archives/toolset/<span class="nbadge">8</span></button>
+      <button class="ni" data-p="skills"><span class="ni-ic">◈</span>/archives/skills/<span class="nbadge">CAP</span></button>
+      <button class="ni" data-p="projects"><span class="ni-ic">◇</span>/archives/projects/<span class="nbadge">4</span></button>
+      <button class="ni" data-p="cli"><span class="ni-ic">▶</span>/archives/terminal/<span class="nbadge">CLI</span></button>
 
       <div class="ndiv"></div>
       <div class="nl">/ UPLINK /</div>
-      <div class="ni" onclick="nav('contact')" data-p="contact"><span class="ni-ic">◌</span>/uplink/contact/<span class="nbadge">MSG</span></div>
-      <a href="assets/Resume.pdf" download="Sajal_Haldar_Resume.pdf" style="text-decoration:none;" onclick="playClk()">
-        <div class="ni" style="color:rgba(255,204,51,0.55);">
+      <button class="ni" data-p="contact"><span class="ni-ic">◌</span>/uplink/contact/<span class="nbadge">MSG</span></button>
+      <a href="assets/Resume.pdf" download="Sajal_Haldar_Resume.pdf" id="resumeLink" style="text-decoration:none;display:block;">
+        <button class="ni" style="color:rgba(255,204,51,0.55);width:100%;">
           <span class="ni-ic" style="color:var(--gold);">&#11015;</span>/uplink/resume/
           <span class="nbadge" style="border-color:rgba(255,204,51,0.18);color:rgba(255,204,51,0.4);">PDF</span>
-        </div>
+        </button>
       </a>
 
       <div class="ndiv"></div>
@@ -93,9 +89,7 @@
       </div>
     </div>
 
-    <!-- ══════════════════════════════════════
-         PAGE CONTENT
-    ══════════════════════════════════════ -->
+    <!-- PAGE CONTENT -->
     <div id="content">
 
       <!-- PAGE: BIO -->
@@ -104,7 +98,6 @@
           <div class="sh-t translatable">BIOGRAPHICAL DATA</div>
           <div class="sh-p">/root/bio/index.dat</div>
         </div>
-
         <div style="background:rgba(255,204,51,0.03);border:1px solid rgba(255,204,51,0.14);padding:13px 16px;margin-bottom:14px;display:flex;gap:11px;align-items:flex-start;">
           <span style="font-size:18px;margin-top:1px;flex-shrink:0;">◉</span>
           <p class="txt translatable">
@@ -115,7 +108,6 @@
             <span style="color:var(--cyan);">Security Analyst</span> role.
           </p>
         </div>
-
         <div class="g2" style="margin-bottom:14px;">
           <div class="p gld">
             <div class="ptag">ENTITY_RECORD</div>
@@ -140,13 +132,11 @@
             </p>
           </div>
         </div>
-
         <div class="g3" style="margin-bottom:14px;">
           <div class="sbox"><div class="n" style="color:var(--gold);">4+</div><div class="l translatable">TOOLS BUILT</div></div>
           <div class="sbox"><div class="n" style="color:var(--cyan);">7.64</div><div class="l translatable">CGPA</div></div>
           <div class="sbox"><div class="n" style="color:var(--green);">∞</div><div class="l translatable">BUG BOUNTY</div></div>
         </div>
-
         <div class="p" style="margin-bottom:14px;">
           <div class="ptag">EDUCATION_LOG</div>
           <div class="edu">
@@ -165,7 +155,6 @@
             <div class="edu-m translatable">2020 · 76.57%</div>
           </div>
         </div>
-
         <div class="p" style="margin-bottom:14px;">
           <div class="ptag">INTERESTS</div>
           <div class="chips" style="margin-top:4px;">
@@ -179,7 +168,6 @@
             <span class="chip g translatable">DSA (C++)</span>
           </div>
         </div>
-
         <div class="p" style="background:rgba(255,204,51,0.04);border-color:rgba(255,204,51,0.2);">
           <div class="ptag">RESUME_DOWNLOAD</div>
           <div style="display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;">
@@ -187,7 +175,7 @@
               <div style="font-size:11px;color:rgba(0,242,255,0.6);margin-bottom:4px;">Download my full resume as a PDF file.</div>
               <div style="font-size:8.5px;color:rgba(0,242,255,0.28);">Sajal_Haldar_Resume.pdf · Penetration Tester / Sec Analyst</div>
             </div>
-            <a href="assets/Resume.pdf" download="Sajal_Haldar_Resume.pdf" onclick="playClk()" style="text-decoration:none;flex-shrink:0;">
+            <a href="assets/Resume.pdf" download="Sajal_Haldar_Resume.pdf" id="resumeDlBtn" style="text-decoration:none;flex-shrink:0;">
               <button class="btn-resume">&#11015; DOWNLOAD RESUME</button>
             </a>
           </div>
@@ -317,14 +305,14 @@
               <label class="form-lbl translatable">MESSAGE PAYLOAD</label>
               <textarea rows="4" class="form-inp" style="resize:vertical;" placeholder="Begin transmission..."></textarea>
             </div>
-            <button onclick="playClk()" class="btn-transmit translatable">▶ TRANSMIT MESSAGE</button>
+            <button id="transmitBtn" class="btn-transmit translatable">▶ TRANSMIT MESSAGE</button>
           </div>
         </div>
       </div>
 
     </div><!-- /#content -->
 
-    <!-- SIGNAL BAR (bottom) -->
+    <!-- SIGNAL BAR -->
     <div id="sigbar">
       <span class="slbl">SIG</span>
       <canvas id="sigc"></canvas>
@@ -333,32 +321,30 @@
 
   </div><!-- /#app -->
 
-  <!-- DECRYPT TOGGLE (floating) -->
+  <!-- DECRYPT TOGGLE -->
   <div id="dtog">
-    <button class="dbtn" id="dbtn" onclick="toggleGlyph()">
+    <button class="dbtn" id="dbtn">
       <span class="dind"></span>
       <span id="dlbl">DECRYPT: ON</span>
     </button>
   </div>
 
-  <!-- PROJECT DETAIL MODAL -->
-  <div id="mover" onclick="mOutClose(event)">
+  <!-- PROJECT MODAL -->
+  <div id="mover">
     <div id="mbox">
       <div id="mtop">
         <span class="mt" id="mtit">ARTIFACT DATA</span>
         <div class="mtabs">
-          <button class="mtab on" onclick="swTab('raw')">RAW DATA</button>
-          <button class="mtab" onclick="swTab('visual')">VISUAL RECON</button>
+          <button class="mtab on" id="tabRaw">RAW DATA</button>
+          <button class="mtab" id="tabVisual">VISUAL RECON</button>
         </div>
-        <button class="mcls" onclick="mClose()">✕</button>
+        <button class="mcls" id="mclsBtn">✕</button>
       </div>
       <div id="mc"></div>
     </div>
   </div>
 
-  <!-- ══════════════════════════════════════
-       SCRIPTS (order matters)
-  ══════════════════════════════════════ -->
+  <!-- SCRIPTS -->
   <script src="js/audio.js"></script>
   <script src="js/cursor.js"></script>
   <script src="js/background.js"></script>
@@ -369,6 +355,44 @@
   <script src="js/tools.js"></script>
   <script src="js/projects.js"></script>
   <script src="js/cli.js"></script>
+  <script>
+    // ── Wire up all interactive elements after all scripts loaded ──
+    (function() {
+
+      // Sidebar nav buttons
+      document.querySelectorAll('.ni[data-p]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          nav(btn.getAttribute('data-p'));
+          closeSide();
+        });
+      });
+
+      // Hamburger
+      document.getElementById('ham').addEventListener('click', toggleSide);
+
+      // Overlay close
+      document.getElementById('overlay').addEventListener('click', closeSide);
+
+      // Top bar buttons
+      document.getElementById('ambbtn').addEventListener('click', playAmb);
+      document.getElementById('encbtn').addEventListener('click', toggleGlyph);
+      document.getElementById('dbtn').addEventListener('click', toggleGlyph);
+
+      // Resume links
+      document.getElementById('resumeLink').addEventListener('click', playClk);
+      document.getElementById('resumeDlBtn').addEventListener('click', playClk);
+
+      // Transmit button
+      document.getElementById('transmitBtn').addEventListener('click', playClk);
+
+      // Modal
+      document.getElementById('mover').addEventListener('click', mOutClose);
+      document.getElementById('mclsBtn').addEventListener('click', mClose);
+      document.getElementById('tabRaw').addEventListener('click', function(){ swTab('raw'); });
+      document.getElementById('tabVisual').addEventListener('click', function(){ swTab('visual'); });
+
+    })();
+  </script>
 
 </body>
 </html>
