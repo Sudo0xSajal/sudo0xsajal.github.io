@@ -21,3 +21,17 @@ function aniSb() {
 
 // Trigger skill bars after boot completes
 setTimeout(aniSb, 4500);
+
+// ── Bind sidebar nav buttons ──
+// Runs here so nav() is guaranteed to exist when buttons are clicked
+window.addEventListener('load', () => {
+  document.querySelectorAll('.ni[data-p]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      nav(btn.getAttribute('data-p'));
+    });
+  });
+
+  // resume link sound
+  const resumeLink = document.getElementById('resumeLink');
+  if (resumeLink) resumeLink.addEventListener('click', () => playClk());
+});
