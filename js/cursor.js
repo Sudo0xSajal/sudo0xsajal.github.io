@@ -44,12 +44,3 @@ function closeSide() {
   document.getElementById('side').classList.remove('open');
   document.getElementById('overlay').style.display = 'none';
 }
-
-// ── Auto-close sidebar on nav item tap (mobile) ──
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.ni').forEach(item => {
-    item.addEventListener('click', () => {
-      if (window.innerWidth <= 768) closeSide();
-    });
-  });
-});
