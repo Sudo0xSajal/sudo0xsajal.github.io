@@ -57,7 +57,7 @@
   backdrop-filter: blur(20px);
 }
 #bbox::before {
-  content: 'INIT // v1.0';
+  content: 'INIT // v3.0';
   position: absolute;
   top: -9px; left: 14px;
   background: var(--bg);
@@ -141,7 +141,6 @@
   position: fixed; inset: 0;
   background: rgba(0,0,0,0.6);
   z-index: 599;
-  backdrop-filter: blur(4px);
 }
 
 .nl     { padding: 4px 16px; font-size: 7.5px; letter-spacing: 3px; color: rgba(255,204,51,0.28); margin-top: 12px; text-transform: uppercase; }
