@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>AETHEL_OS v1.0 // SAJAL HALDAR</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+
+  <!-- CUSTOM CURSOR (desktop only) -->
+  <div id="cur"></div>
+  <div id="cur2"></div>
+
+  <!-- BACKGROUND CANVAS -->
+  <canvas id="bgc"></canvas>
+
+  <!-- SIDEBAR OVERLAY (mobile) -->
+  <div id="overlay" onclick="closeSide()"></div>
+
+  <!-- ══════════════════════════════════════
+       BOOT SCREEN
+  ══════════════════════════════════════ -->
+  <div id="boot">
+    <div id="bwrap">
+      <span class="blog">AETHEL_OS</span>
+      <span class="bsub">v1.0 // BOOTING INTERFACE // PENTEST OPERATIVE</span>
+      <div id="bbox">
+        <div id="blog"></div>
+        <div id="bprog"><div id="bfill"></div></div>
+        <div id="bpct">
+          <span id="bstat">INITIALIZING...</span>
+          <span id="bnum">0%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       MAIN APP
+  ══════════════════════════════════════ -->
+  <div id="app">
+
+    <!-- TOP BAR -->
+    <div id="bar">
+      <div style="display:flex;align-items:center;gap:0;">
+        <button id="ham" onclick="toggleSide()" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+        <span class="blogo" style="margin-left:10px;">AETHEL_OS</span>
+        <span class="bsep">//</span>
+        <span class="bbadge live">● UPLINK</span>
+        <span class="bsep">//</span>
+        <span class="bbadge">SUDO0XSAJAL</span>
+      </div>
+      <div id="bar-r">
+        <span id="clk"></span>
+        <button class="tbtn" id="ambbtn" onclick="playAmb()">♫ AMBIENT</button>
+        <button class="tbtn gld" id="encbtn" onclick="toggleGlyph()">◈ DECODE</button>
+      </div>
+    </div>
+
+    <!-- SIDEBAR -->
+    <div id="side">
+      <div class="nl">/ ROOT /</div>
+      <div class="ni on" onclick="nav('bio')" data-p="bio"><span class="ni-ic">◉</span>/root/bio/<span class="nbadge">BIO</span></div>
+
+      <div class="nl">/ ARCHIVES /</div>
+      <div class="ni" onclick="nav('tools')"    data-p="tools">   <span class="ni-ic">⊕</span>/archives/toolset/  <span class="nbadge">8</span></div>
+      <div class="ni" onclick="nav('skills')"   data-p="skills">  <span class="ni-ic">◈</span>/archives/skills/   <span class="nbadge">CAP</span></div>
+      <div class="ni" onclick="nav('projects')" data-p="projects"><span class="ni-ic">◇</span>/archives/projects/ <span class="nbadge">4</span></div>
+      <div class="ni" onclick="nav('cli')"      data-p="cli">     <span class="ni-ic">▶</span>/archives/terminal/ <span class="nbadge">CLI</span></div>
+
+      <div class="ndiv"></div>
+      <div class="nl">/ UPLINK /</div>
+      <div class="ni" onclick="nav('contact')" data-p="contact"><span class="ni-ic">◌</span>/uplink/contact/<span class="nbadge">MSG</span></div>
+      <a href="assets/Resume.pdf" download="Sajal_Haldar_Resume.pdf" style="text-decoration:none;" onclick="playClk()">
+        <div class="ni" style="color:rgba(255,204,51,0.55);">
+          <span class="ni-ic" style="color:var(--gold);">&#11015;</span>/uplink/resume/
+          <span class="nbadge" style="border-color:rgba(255,204,51,0.18);color:rgba(255,204,51,0.4);">PDF</span>
+        </div>
+      </a>
+
+      <div class="ndiv"></div>
+      <div class="sinfo">
+        <div class="sir"><span>VESSEL</span><span>AETHEL-7</span></div>
+        <div class="sir"><span>ENTITY</span><span>SAJAL_H</span></div>
+        <div class="sir"><span>ORIGIN</span><span>KOL//IN</span></div>
+        <div class="sir"><span>SIGNAL</span><span>94.7%</span></div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════
+         PAGE CONTENT
+    ══════════════════════════════════════ -->
+    <div id="content">
+
+      <!-- PAGE: BIO -->
+      <div class="pg on" id="pg-bio">
+        <div class="sh">
+          <div class="sh-t translatable">BIOGRAPHICAL DATA</div>
+          <div class="sh-p">/root/bio/index.dat</div>
+        </div>
+
+        <div style="background:rgba(255,204,51,0.03);border:1px solid rgba(255,204,51,0.14);padding:13px 16px;margin-bottom:14px;display:flex;gap:11px;align-items:flex-start;">
+          <span style="font-size:18px;margin-top:1px;flex-shrink:0;">◉</span>
+          <p class="txt translatable">
+            <strong style="color:var(--gold);">TRANSMISSION RECEIVED.</strong>
+            You have accessed the archive of <strong style="color:var(--gold);">SAJAL HALDAR</strong> —
+            Cybersecurity Enthusiast, Ethical Hacker &amp; Penetration Tester from Kolkata, India.
+            Seeking an entry-level <span style="color:var(--cyan);">Penetration Tester</span> or
+            <span style="color:var(--cyan);">Security Analyst</span> role.
+          </p>
+        </div>
+
+        <div class="g2" style="margin-bottom:14px;">
+          <div class="p gld">
+            <div class="ptag">ENTITY_RECORD</div>
+            <div class="bgrid">
+              <div class="bst"><div class="lbl translatable">DESIGNATION</div><div class="val translatable">SAJAL HALDAR</div></div>
+              <div class="bst"><div class="lbl translatable">ALIAS</div><div class="val" style="color:var(--cyan);">Sudo0xSajal</div></div>
+              <div class="bst"><div class="lbl translatable">FUNCTION</div><div class="val translatable">PENTEST OPERATIVE</div></div>
+              <div class="bst"><div class="lbl translatable">ORIGIN</div><div class="val translatable">KOLKATA // IN</div></div>
+              <div class="bst"><div class="lbl translatable">STUDY</div><div class="val translatable">B.TECH CSE (CYBER SECURITY)</div></div>
+              <div class="bst"><div class="lbl translatable">STATUS</div><div class="val" style="color:var(--green);">● SEEKING ROLE</div></div>
+            </div>
+          </div>
+          <div class="p">
+            <div class="ptag">MISSION_BRIEF</div>
+            <p class="txt translatable" style="margin-bottom:10px;">
+              Hands-on experience in penetration testing, VAPT, and bug bounty hunting.
+              Expert in OWASP Top 10, OSINT, and exploit testing.
+              Active on BugCrowd and TryHackMe. Currently sharpening DSA with C++.
+            </p>
+            <p class="txt translatable" style="color:rgba(255,204,51,0.5);font-style:italic;">
+              "I enjoy finding and fixing vulnerabilities to make digital systems more secure."
+            </p>
+          </div>
+        </div>
+
+        <div class="g3" style="margin-bottom:14px;">
+          <div class="sbox"><div class="n" style="color:var(--gold);">4+</div><div class="l translatable">TOOLS BUILT</div></div>
+          <div class="sbox"><div class="n" style="color:var(--cyan);">7.64</div><div class="l translatable">CGPA</div></div>
+          <div class="sbox"><div class="n" style="color:var(--green);">∞</div><div class="l translatable">BUG BOUNTY</div></div>
+        </div>
+
+        <div class="p" style="margin-bottom:14px;">
+          <div class="ptag">EDUCATION_LOG</div>
+          <div class="edu">
+            <div class="edu-d translatable">B.Tech — CSE (Cyber Security)</div>
+            <div class="edu-s translatable">Budge Budge Institute of Technology | MAKAUT</div>
+            <div class="edu-m translatable">2022 – Present · CGPA: 7.64</div>
+          </div>
+          <div class="edu">
+            <div class="edu-d translatable">Higher Secondary (Class XII)</div>
+            <div class="edu-s translatable">Balurghat High School | WBCHSE</div>
+            <div class="edu-m translatable">2022 · 83.40%</div>
+          </div>
+          <div class="edu">
+            <div class="edu-d translatable">Secondary (Class X)</div>
+            <div class="edu-s translatable">Khidirpur High School | WBBSE</div>
+            <div class="edu-m translatable">2020 · 76.57%</div>
+          </div>
+        </div>
+
+        <div class="p" style="margin-bottom:14px;">
+          <div class="ptag">INTERESTS</div>
+          <div class="chips" style="margin-top:4px;">
+            <span class="chip gld translatable">Bug Bounty</span>
+            <span class="chip gld translatable">CTF Challenges</span>
+            <span class="chip translatable">Sec Research</span>
+            <span class="chip r translatable">Malware Analysis</span>
+            <span class="chip r translatable">Digital Forensics</span>
+            <span class="chip p translatable">Cryptography</span>
+            <span class="chip g translatable">Hacking Tools</span>
+            <span class="chip g translatable">DSA (C++)</span>
+          </div>
+        </div>
+
+        <div class="p" style="background:rgba(255,204,51,0.04);border-color:rgba(255,204,51,0.2);">
+          <div class="ptag">RESUME_DOWNLOAD</div>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;">
+            <div>
+              <div style="font-size:11px;color:rgba(0,242,255,0.6);margin-bottom:4px;">Download my full resume as a PDF file.</div>
+              <div style="font-size:8.5px;color:rgba(0,242,255,0.28);">Sajal_Haldar_Resume.pdf · Penetration Tester / Sec Analyst</div>
+            </div>
+            <a href="assets/Resume.pdf" download="Sajal_Haldar_Resume.pdf" onclick="playClk()" style="text-decoration:none;flex-shrink:0;">
+              <button class="btn-resume">&#11015; DOWNLOAD RESUME</button>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAGE: TOOLS -->
+      <div class="pg" id="pg-tools">
+        <div class="sh">
+          <div class="sh-t translatable">TOOLSET ARSENAL</div>
+          <div class="sh-p">/root/archives/toolset/</div>
+        </div>
+        <div class="tgrid" id="tgrid"></div>
+      </div>
+
+      <!-- PAGE: SKILLS -->
+      <div class="pg" id="pg-skills">
+        <div class="sh">
+          <div class="sh-t translatable">CAPABILITY MATRIX</div>
+          <div class="sh-p">/root/archives/skills/</div>
+        </div>
+        <div class="g2" style="margin-bottom:14px;">
+          <div class="p">
+            <div class="ptag">CORE_CYBERSEC</div>
+            <div class="sbw"><div class="sbl"><span class="translatable">Penetration Testing</span><span>92%</span></div><div class="sbb"><div class="sbf" data-w="92"></div></div></div>
+            <div class="sbw"><div class="sbl"><span class="translatable">OWASP Top 10</span><span>90%</span></div><div class="sbb"><div class="sbf" data-w="90"></div></div></div>
+            <div class="sbw"><div class="sbl"><span class="translatable">Network Security</span><span>86%</span></div><div class="sbb"><div class="sbf" data-w="86"></div></div></div>
+            <div class="sbw"><div class="sbl"><span class="translatable">OSINT &amp; Recon</span><span>88%</span></div><div class="sbb"><div class="sbf" data-w="88"></div></div></div>
+            <div class="sbw"><div class="sbl"><span class="translatable">Bug Bounty</span><span>80%</span></div><div class="sbb"><div class="sbf" data-w="80"></div></div></div>
+          </div>
+          <div class="p">
+            <div class="ptag">PROGRAMMING</div>
+            <div class="sbw"><div class="sbl"><span>Python</span><span>88%</span></div><div class="sbb"><div class="sbf" data-w="88"></div></div></div>
+            <div class="sbw"><div class="sbl"><span>Bash / Shell</span><span>83%</span></div><div class="sbb"><div class="sbf" data-w="83"></div></div></div>
+            <div class="sbw"><div class="sbl"><span>Golang</span><span>72%</span></div><div class="sbb"><div class="sbf" data-w="72"></div></div></div>
+            <div class="sbw"><div class="sbl"><span>C / C++</span><span>70%</span></div><div class="sbb"><div class="sbf" data-w="70"></div></div></div>
+            <div class="sbw"><div class="sbl"><span>JavaScript</span><span>68%</span></div><div class="sbb"><div class="sbf" data-w="68"></div></div></div>
+            <div class="sbw"><div class="sbl"><span>PHP</span><span>62%</span></div><div class="sbb"><div class="sbf" data-w="62"></div></div></div>
+            <div class="sbw"><div class="sbl"><span>Java</span><span>65%</span></div><div class="sbb"><div class="sbf" data-w="65"></div></div></div>
+          </div>
+        </div>
+        <div class="g2">
+          <div class="p">
+            <div class="ptag">EXPLOIT_TOOLS</div>
+            <div class="chips" style="margin-top:4px;">
+              <span class="chip gld">Burp Suite</span><span class="chip gld">Metasploit</span>
+              <span class="chip gld">SQLmap</span><span class="chip gld">Hydra</span>
+              <span class="chip gld">ZAP</span><span class="chip gld">Netcat</span>
+              <span class="chip gld">ffuf</span><span class="chip gld">Amass</span>
+            </div>
+          </div>
+          <div class="p">
+            <div class="ptag">RECON_CRYPTO</div>
+            <div class="chips" style="margin-top:4px;">
+              <span class="chip r">Nmap</span><span class="chip r">WhatWeb</span><span class="chip r">Whois</span>
+              <span class="chip p">Hashcat</span><span class="chip p">John the Ripper</span>
+              <span class="chip">Wireshark</span>
+              <span class="chip g">Kali Linux</span><span class="chip g">Parrot OS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAGE: PROJECTS -->
+      <div class="pg" id="pg-projects">
+        <div class="sh">
+          <div class="sh-t translatable">DATA ARTIFACTS</div>
+          <div class="sh-p">/root/archives/projects/</div>
+        </div>
+        <div class="pgrid" id="pgrid"></div>
+      </div>
+
+      <!-- PAGE: CLI TERMINAL -->
+      <div class="pg" id="pg-cli">
+        <div class="sh">
+          <div class="sh-t translatable">COMMAND INTERFACE</div>
+          <div class="sh-p">/root/archives/terminal/</div>
+        </div>
+        <div class="p" style="padding:9px 14px;margin-bottom:12px;font-size:8.5px;">
+          <span style="color:rgba(0,242,255,0.3);" class="translatable">CMD: </span>
+          <span style="color:var(--gold);">HELP · WHOAMI · SKILLS · TOOLS · SCAN_PROJECTS · DECODE [id] · UPLINK · RESUME · LS · PING · STATUS · CLEAR</span>
+        </div>
+        <div id="clit"></div>
+        <div id="clinr">
+          <span class="cpmt">SAJAL@AETHEL-7 ~ $</span>
+          <input type="text" id="cliin" placeholder="enter command..." autocomplete="off" spellcheck="false">
+        </div>
+      </div>
+
+      <!-- PAGE: CONTACT -->
+      <div class="pg" id="pg-contact">
+        <div class="sh">
+          <div class="sh-t translatable">UPLINK PROTOCOLS</div>
+          <div class="sh-p">/root/uplink/contact/</div>
+        </div>
+        <div class="p gld" style="margin-bottom:14px;">
+          <div class="ptag">TRANSMISSION_HEADER</div>
+          <p class="txt translatable">Seeking <strong style="color:var(--gold);">entry-level Penetration Tester or Security Analyst</strong> role. All channels active. Response: 24–48 hours.</p>
+        </div>
+        <div class="g2" style="margin-bottom:14px;">
+          <a href="mailto:sajalhaldar2004@gmail.com" style="text-decoration:none;" onclick="playClk()">
+            <div class="cit" style="cursor:pointer;"><div class="ci-ic">◎</div><div><div class="ci-l">EMAIL &#8599;</div><div class="ci-v">sajalhaldar2004@gmail.com</div></div></div>
+          </a>
+          <a href="https://github.com/Sudo0xSajal" target="_blank" rel="noopener" style="text-decoration:none;" onclick="playClk()">
+            <div class="cit" style="cursor:pointer;"><div class="ci-ic">◈</div><div><div class="ci-l">GITHUB &#8599;</div><div class="ci-v">github.com/Sudo0xSajal</div></div></div>
+          </a>
+          <a href="https://linkedin.com/in/sajalhaldar16" target="_blank" rel="noopener" style="text-decoration:none;" onclick="playClk()">
+            <div class="cit" style="cursor:pointer;"><div class="ci-ic">◉</div><div><div class="ci-l">LINKEDIN &#8599;</div><div class="ci-v">linkedin.com/in/sajalhaldar16</div></div></div>
+          </a>
+          <div class="cit">
+            <div class="ci-ic">◌</div>
+            <div><div class="ci-l translatable">LOCATION</div><div class="ci-v">Kolkata, West Bengal, India</div></div>
+          </div>
+        </div>
+        <div class="p">
+          <div class="ptag">DIRECT_TRANSMISSION</div>
+          <div style="display:flex;flex-direction:column;gap:11px;margin-top:6px;">
+            <div>
+              <label class="form-lbl translatable">SENDER DESIGNATION</label>
+              <input type="text" class="form-inp" placeholder="Your name...">
+            </div>
+            <div>
+              <label class="form-lbl translatable">REPLY FREQUENCY</label>
+              <input type="text" class="form-inp" placeholder="your@email.com">
+            </div>
+            <div>
+              <label class="form-lbl translatable">MESSAGE PAYLOAD</label>
+              <textarea rows="4" class="form-inp" style="resize:vertical;" placeholder="Begin transmission..."></textarea>
+            </div>
+            <button onclick="playClk()" class="btn-transmit translatable">▶ TRANSMIT MESSAGE</button>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /#content -->
+
+    <!-- SIGNAL BAR (bottom) -->
+    <div id="sigbar">
+      <span class="slbl">SIG</span>
+      <canvas id="sigc"></canvas>
+      <span class="sfreq">1420.405 MHz // H-LINE</span>
+    </div>
+
+  </div><!-- /#app -->
+
+  <!-- DECRYPT TOGGLE (floating) -->
+  <div id="dtog">
+    <button class="dbtn" id="dbtn" onclick="toggleGlyph()">
+      <span class="dind"></span>
+      <span id="dlbl">DECRYPT: ON</span>
+    </button>
+  </div>
+
+  <!-- PROJECT DETAIL MODAL -->
+  <div id="mover" onclick="mOutClose(event)">
+    <div id="mbox">
+      <div id="mtop">
+        <span class="mt" id="mtit">ARTIFACT DATA</span>
+        <div class="mtabs">
+          <button class="mtab on" onclick="swTab('raw')">RAW DATA</button>
+          <button class="mtab" onclick="swTab('visual')">VISUAL RECON</button>
+        </div>
+        <button class="mcls" onclick="mClose()">✕</button>
+      </div>
+      <div id="mc"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SCRIPTS (order matters)
+  ══════════════════════════════════════ -->
+  <script src="js/audio.js"></script>
+  <script src="js/cursor.js"></script>
+  <script src="js/background.js"></script>
+  <script src="js/signal.js"></script>
+  <script src="js/boot.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/glyph.js"></script>
+  <script src="js/tools.js"></script>
+  <script src="js/projects.js"></script>
+  <script src="js/cli.js"></script>
+
+</body>
+</html>

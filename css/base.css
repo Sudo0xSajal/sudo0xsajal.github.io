@@ -1,0 +1,81 @@
+/* ═══════════════════════════════════════════════════════
+   base.css — CSS Variables, Reset, Body, Animations
+═══════════════════════════════════════════════════════ */
+
+:root {
+  --bg:     #05050a;
+  --bg2:    #0a0a12;
+  --bg3:    #0f0f18;
+  --gold:   #ffcc33;
+  --cyan:   #00f2ff;
+  --red:    #ff3355;
+  --green:  #39ff14;
+  --purple: #c084fc;
+  --orange: #ff8c42;
+  --border:   rgba(0,242,255,0.1);
+  --border-g: rgba(255,204,51,0.12);
+  --glass:    rgba(0,242,255,0.03);
+  --glass-g:  rgba(255,204,51,0.03);
+  --f:     'JetBrains Mono', monospace;
+  --bar:   46px;
+  --side:  220px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--cyan);
+  font-family: var(--f);
+  font-size: 13px;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* Scanlines */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    rgba(0,0,0,0.04) 3px,
+    rgba(0,0,0,0.04) 4px
+  );
+  pointer-events: none;
+  z-index: 9998;
+}
+
+/* Vignette */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.65) 100%);
+  pointer-events: none;
+  z-index: 9997;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar        { width: 3px; height: 3px; }
+::-webkit-scrollbar-track  { background: var(--bg); }
+::-webkit-scrollbar-thumb  { background: rgba(0,242,255,0.12); }
+
+/* Animations */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: .25; }
+}
+
+@keyframes pgin {
+  from { opacity: 0; transform: translateY(5px); }
+  to   { opacity: 1; transform: none; }
+}
