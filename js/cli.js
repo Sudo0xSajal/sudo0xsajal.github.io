@@ -26,7 +26,7 @@ const CMDS = {
     { t: 'res', v: '  NAME  : Sajal Haldar' },
     { t: 'res', v: '  ALIAS : Sudo0xSajal' },
     { t: 'res', v: '  ROLE  : Penetration Tester / Sec Analyst' },
-    { t: 'res', v: '  CGPA  : 7.64 // B.Tech CSE (Cyber) MAKAUT' },
+    { t: 'res', v: '  CGPA  : 7.64 // B.Tech CSE (Cyber Security) MAKAUT' },
     { t: 'res', v: '  BASE  : Kolkata, West Bengal, India' },
     { t: 'res', v: '  ACTIVE: BugCrowd · TryHackMe' },
     { t: 'ok',  v: '  SEEKING: Entry-Level Pentest / Sec Analyst' },
