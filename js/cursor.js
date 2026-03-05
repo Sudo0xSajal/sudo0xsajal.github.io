@@ -2,16 +2,26 @@
    cursor.js — Custom cursor, IST clock, sidebar toggle
 ═══════════════════════════════════════════════════ */
 
-// ── Custom Cursor ──
+// ── Custom Cursor (desktop only) ──
 const C1 = document.getElementById('cur');
 const C2 = document.getElementById('cur2');
 
-document.addEventListener('mousemove', e => {
-  C1.style.left = e.clientX + 'px'; C1.style.top = e.clientY + 'px';
-  C2.style.left = e.clientX + 'px'; C2.style.top = e.clientY + 'px';
-});
-document.addEventListener('mousedown', () => { C1.style.width = '9px';  C1.style.height = '9px'; });
-document.addEventListener('mouseup',   () => { C1.style.width = '16px'; C1.style.height = '16px'; });
+// Disable cursor on touch devices entirely
+const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+
+if (!isTouch) {
+  document.addEventListener('mousemove', e => {
+    C1.style.left = e.clientX + 'px'; C1.style.top = e.clientY + 'px';
+    C2.style.left = e.clientX + 'px'; C2.style.top = e.clientY + 'px';
+  });
+  document.addEventListener('mousedown', () => { C1.style.width = '9px';  C1.style.height = '9px'; });
+  document.addEventListener('mouseup',   () => { C1.style.width = '16px'; C1.style.height = '16px'; });
+} else {
+  // Hide cursor elements on touch devices
+  C1.style.display = 'none';
+  C2.style.display = 'none';
+  document.body.style.cursor = 'auto';
+}
 
 // ── IST Clock ──
 function tick() {

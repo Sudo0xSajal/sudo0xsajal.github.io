@@ -245,3 +245,11 @@
   padding: 13px; font-size: 9.5px; line-height: 1.75;
   color: rgba(0,242,255,0.5); overflow-x: auto; white-space: pre;
 }
+
+/* ─── MOBILE: disable all backdrop-filter (causes full-screen blur on Android) ─── */
+@media (max-width: 768px), (hover: none) {
+  #bbox  { backdrop-filter: none; }
+  #bar   { backdrop-filter: none; }
+  #side  { backdrop-filter: none; }
+  #mover { backdrop-filter: none; }
+}
