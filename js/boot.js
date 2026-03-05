@@ -23,7 +23,7 @@ const BOOT = [
   { t: 'd',  v: '[ ENTITY ] Loading biographical record...',     d: 1980 },
   { t: 'c',  v: '  > SAJAL HALDAR // Sudo0xSajal',               d: 2140 },
   { t: 'c',  v: '  > PENTEST OPERATIVE // KOLKATA // IN',         d: 2280 },
-  { t: 'c',  v: '  > B.TECH CSE (CYBER) // MAKAUT // CGPA: 7.64', d: 2420 },
+  { t: 'c',  v: '  > B.TECH CSE (CYBER SECURITY) // MAKAUT // CGPA: 7.64', d: 2420 },
   { t: 'c',  v: '  > BUGCROWD · TRYHACKME · ACTIVE',             d: 2560 },
   { t: 'ok', v: '  ENTITY LOADED ............................ [OK]', d: 2700 },
   { t: 'd',  v: '',                                               d: 2800 },
