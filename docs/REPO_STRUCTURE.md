@@ -1,94 +1,64 @@
-# AETHEL_OS v1.0 // REPO STRUCTURE & DEPLOYMENT GUIDE
-# ═══════════════════════════════════════════════════════
+# Sajal Haldar Portfolio — Deployment Guide
 
-## // FOLDER LAYOUT
-
-Place all files exactly as shown below in your GitHub repo:
+## Repo Structure
 
 ```
-sudo0xsajal.github.io/          ← Root of your GitHub repo
+sudo0xsajal.github.io/
 │
-├── index.html                  ← Main HTML (structure only, no inline CSS/JS)
+├── index.html              ← Main HTML (structure only)
 │
 ├── css/
-│   ├── base.css                ← CSS variables, reset, body, animations
-│   ├── layout.css              ← Boot, topbar, sidebar, modal, signal bar
-│   └── components.css          ← Panels, skills, tools, projects, CLI, forms
+│   ├── base.css            ← Design tokens, reset, animations
+│   ├── layout.css          ← Topbar, sidebar, modal, status bar
+│   └── components.css      ← Cards, skills, tools, projects, contact
 │
 ├── js/
-│   ├── audio.js                ← Web Audio API (click SFX + ambient drone)
-│   ├── cursor.js               ← Custom cursor + IST clock + sidebar toggle
-│   ├── background.js           ← Pulsar map canvas animation
-│   ├── signal.js               ← Bottom waveform canvas
-│   ├── boot.js                 ← Boot sequence animation
-│   ├── nav.js                  ← Page navigation + skill bar trigger
-│   ├── glyph.js                ← Alien glyph encryption toggle
-│   ├── tools.js                ← 8 live tool canvas visualizations
-│   ├── projects.js             ← Project cards, canvas drawers, modal
-│   └── cli.js                  ← Full terminal / command system
+│   ├── cursor.js           ← Custom cursor, IST clock, sidebar toggle
+│   ├── background.js       ← Particle network canvas animation
+│   ├── signal.js           ← Status bar waveform canvas
+│   ├── nav.js              ← Page navigation + skill bar trigger
+│   ├── glyph.js            ← Alien glyph encryption toggle
+│   ├── tools.js            ← 8 live tool canvas visualisations
+│   └── projects.js         ← Project cards, canvas drawers, modal
 │
 ├── assets/
-│   └── Resume.pdf              ← Your CV — referenced by index.html & cli.js
+│   └── Resume.pdf          ← Sajal Haldar — Penetration Tester CV
 │
 ├── docs/
-│   └── REPO_STRUCTURE.md       ← This file
+│   └── DEPLOY.md           ← This file
 │
-├── README.md                   ← Project readme
-└── LICENSE                     ← MIT License
+└── README.md
 ```
 
----
-
-## // GITHUB PAGES SETUP
-
-1. Go to **github.com/new**
-2. Repository name: `sudo0xsajal.github.io`
-3. Visibility: **Public**
-4. Do NOT initialise with README (you already have one)
-5. Click **Create repository**
-6. Upload all files (see Git commands below)
-7. Go to **Settings → Pages → Branch: main → Folder: / (root) → Save**
-8. Wait ~2 minutes
-
-**Live URL:**
-```
-https://sudo0xsajal.github.io
-```
-
----
-
-## // GIT COMMANDS (first push)
+## Deploy to GitHub Pages
 
 ```bash
-git init
+# 1. Clone the repo
+git clone https://github.com/Sudo0xSajal/sudo0xsajal.github.io.git
+cd sudo0xsajal.github.io
+
+# 2. Replace files with new portfolio
+
+# 3. Commit and push
 git add .
-git commit -m "feat: initial release — AETHEL_OS v1.0"
+git commit -m "feat: portfolio v6 — professional dark theme"
 git branch -M main
-git remote add origin https://github.com/Sudo0xSajal/sudo0xsajal.github.io.git
 git push -u origin main
+
+# 4. GitHub Settings → Pages → Branch: main → Folder: / (root) → Save
+# Live at: https://sudo0xsajal.github.io
 ```
 
----
+## Run Locally
 
-## // RECOMMENDED REPO SETTINGS
-
-On your repo page click the ⚙️ gear icon next to **About**:
-
-```
-Description  →  ◈ Cyberpunk portfolio OS — Penetration Tester · Ethical Hacker · Sajal Haldar
-Website      →  https://sudo0xsajal.github.io
-Topics       →  portfolio  cybersecurity  pentesting  ethical-hacking
-                osint  vanilla-js  canvas  github-pages
+```bash
+# Avoids CORS issues with assets/Resume.pdf
+python3 -m http.server 8080
+# Visit: http://localhost:8080
 ```
 
----
+## Notes
 
-## // IMPORTANT NOTES
-
-- `Resume.pdf` must be inside `assets/` — both `index.html` and `cli.js` reference `assets/Resume.pdf`
-- All JS files must load in the order listed in `index.html` — `audio.js` and `cursor.js` first, `cli.js` last
-- No build step required — open `index.html` directly or use a local server:
-  ```bash
-  python3 -m http.server 8080
-  ```
-- Use a local server (not file://) when testing `assets/Resume.pdf` to avoid CORS errors
+- No build tools, no npm, no frameworks — pure HTML/CSS/JS
+- `assets/Resume.pdf` must be in the `assets/` folder for the download link to work
+- All external dependency: Google Fonts (loaded via CDN in index.html)

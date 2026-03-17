@@ -1,26 +1,54 @@
-/* ═══════════════════════════════════════════════════════
-   base.css — CSS Variables, Reset, Body, Animations
-═══════════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════
+   BASE — tokens, reset, typography
+═══════════════════════════════════════════ */
 
 :root {
-  --bg:     #05050a;
-  --bg2:    #0a0a12;
-  --bg3:    #0f0f18;
-  --gold:   #ffcc33;
-  --cyan:   #00f2ff;
-  --red:    #ff3355;
-  --green:  #39ff14;
-  --purple: #c084fc;
-  --orange: #ff8c42;
-  --border:   rgba(0,242,255,0.1);
-  --border-g: rgba(255,204,51,0.12);
-  --glass:    rgba(0,242,255,0.03);
-  --glass-g:  rgba(255,204,51,0.03);
-  --f:     'JetBrains Mono', monospace;
-  --bar:   46px;
-  --side:  220px;
+  /* Backgrounds */
+  --bg:      #0d1117;
+  --bg1:     #161b22;
+  --bg2:     #21262d;
+  --bg3:     #30363d;
+
+  /* Brand colours */
+  --blue:    #58a6ff;
+  --blue-dk: #1f6feb;
+  --blue-bg: rgba(31, 111, 235, 0.10);
+  --blue-bd: rgba(88, 166, 255, 0.22);
+
+  --teal:    #3dc9c0;
+  --teal-bg: rgba(61, 201, 192, 0.08);
+  --teal-bd: rgba(61, 201, 192, 0.20);
+
+  --green:   #3fb950;
+  --red:     #f85149;
+  --amber:   #d29922;
+  --purple:  #bc8cff;
+
+  /* Text */
+  --t1: #e6edf3;
+  --t2: #8b949e;
+  --t3: #484f58;
+  --t4: rgba(230, 237, 243, 0.65);
+
+  /* Borders */
+  --bd1: rgba(255, 255, 255, 0.08);
+  --bd2: rgba(255, 255, 255, 0.13);
+
+  /* Radii */
+  --r:  6px;
+  --r2: 10px;
+
+  /* Layout */
+  --bar: 58px;
+  --sw:  260px;
+
+  /* Fonts */
+  --fh: 'Syne', sans-serif;
+  --fb: 'Inter', sans-serif;
+  --fm: 'JetBrains Mono', monospace;
 }
 
+/* Reset */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -31,51 +59,36 @@ html { scroll-behavior: smooth; }
 
 body {
   background: var(--bg);
-  color: var(--cyan);
-  font-family: var(--f);
-  font-size: 13px;
+  color: var(--t1);
+  font-family: var(--fb);
+  font-size: 15px;
+  line-height: 1.65;
   overflow-x: hidden;
   cursor: none;
 }
 
-/* Scanlines */
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 3px,
-    rgba(0,0,0,0.04) 3px,
-    rgba(0,0,0,0.04) 4px
-  );
-  pointer-events: none;
-  z-index: 9998;
-}
+a { color: var(--blue); text-decoration: none; }
+a:hover { text-decoration: underline; }
 
-/* Vignette */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.65) 100%);
-  pointer-events: none;
-  z-index: 9997;
-}
-
-/* Scrollbar */
-::-webkit-scrollbar        { width: 3px; height: 3px; }
-::-webkit-scrollbar-track  { background: var(--bg); }
-::-webkit-scrollbar-thumb  { background: rgba(0,242,255,0.12); }
+/* Utility colour helpers */
+.accent-blue  { color: var(--blue); }
+.accent-teal  { color: var(--teal); }
+.accent-green { color: var(--green); }
+.status-available { color: var(--green); }
 
 /* Animations */
-@keyframes pulse {
+@keyframes blink {
   0%, 100% { opacity: 1; }
-  50%       { opacity: .25; }
+  50%       { opacity: 0.3; }
 }
 
-@keyframes pgin {
+@keyframes pgIn {
   from { opacity: 0; transform: translateY(5px); }
   to   { opacity: 1; transform: none; }
 }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.10); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.18); }

@@ -1,74 +1,74 @@
-/* ═══════════════════════════════════════════════════
-   background.js — Animated pulsar map canvas (bg)
-═══════════════════════════════════════════════════ */
+// background.js — animated particle network
 
-const bgC = document.getElementById('bgc');
-const bgX = bgC.getContext('2d');
-let mx = .5, my = .5, bgT = 0;
+(function () {
+  const c   = document.getElementById('bgc');
+  if (!c) return;
+  const ctx = c.getContext('2d');
+  let W = innerWidth, H = innerHeight;
 
-document.addEventListener('mousemove', e => {
-  mx = e.clientX / innerWidth;
-  my = e.clientY / innerHeight;
-});
+  function resize() { W = innerWidth; H = innerHeight; c.width = W; c.height = H; }
+  resize();
+  addEventListener('resize', resize);
 
-function resizeBg() { bgC.width = innerWidth; bgC.height = innerHeight; }
-resizeBg();
-addEventListener('resize', resizeBg);
+  const N   = 50;
+  const pts = Array.from({ length: N }, () => ({
+    x:  Math.random() * W,
+    y:  Math.random() * H,
+    vx: (Math.random() - 0.5) * 0.2,
+    vy: (Math.random() - 0.5) * 0.2,
+    r:  Math.random() * 1.4 + 0.4,
+  }));
+  let mx = W / 2, my = H / 2;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
 
-// Pulsar spoke records: angle, length fraction, frequency
-const PSR = [
-  { a: .18,  l: .30, f: 1.4 },
-  { a: 1.05, l: .20, f: 2.2 },
-  { a: 2.0,  l: .36, f: .9  },
-  { a: 2.85, l: .24, f: 3.1 },
-  { a: 3.72, l: .32, f: 1.7 },
-  { a: 4.5,  l: .16, f: 4.4 },
-  { a: 5.2,  l: .27, f: 2.8 },
-  { a: 5.82, l: .29, f: 2.0 },
-];
+  function frame() {
+    ctx.clearRect(0, 0, W, H);
 
-function drawBg() {
-  bgX.clearRect(0, 0, bgC.width, bgC.height);
-  bgT += .003;
+    // Subtle radial gradient
+    const g = ctx.createRadialGradient(W / 2, H / 2, 0, W / 2, H / 2, Math.max(W, H) * 0.65);
+    g.addColorStop(0, 'rgba(31,111,235,0.03)');
+    g.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
 
-  const cx = bgC.width  / 2 + (mx - .5) * 40;
-  const cy = bgC.height / 2 + (my - .5) * 40;
-  const mL = Math.min(bgC.width, bgC.height) * .42;
+    // Move points
+    pts.forEach(p => {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
+      if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
+    });
 
-  // Grid
-  bgX.strokeStyle = 'rgba(0,242,255,0.022)';
-  bgX.lineWidth   = .5;
-  for (let x = 0; x < bgC.width;  x += 80) { bgX.beginPath(); bgX.moveTo(x, 0); bgX.lineTo(x, bgC.height); bgX.stroke(); }
-  for (let y = 0; y < bgC.height; y += 80) { bgX.beginPath(); bgX.moveTo(0, y); bgX.lineTo(bgC.width, y);  bgX.stroke(); }
-
-  // Spokes + tick marks
-  PSR.forEach((p, i) => {
-    const a   = p.a + bgT * .1 + (mx - .5) * .18;
-    const len = p.l * mL;
-    bgX.beginPath(); bgX.moveTo(cx, cy); bgX.lineTo(cx + Math.cos(a) * len, cy + Math.sin(a) * len);
-    bgX.strokeStyle = `rgba(0,242,255,${.035 + .02 * Math.sin(bgT * p.f + i)})`;
-    bgX.lineWidth   = .6; bgX.stroke();
-
-    const ex = cx + Math.cos(a) * len, ey = cy + Math.sin(a) * len;
-    const ts = 4 + 2 * Math.sin(bgT * p.f * 2);
-    bgX.beginPath();
-    bgX.moveTo(ex - Math.sin(a) * ts, ey + Math.cos(a) * ts);
-    bgX.lineTo(ex + Math.sin(a) * ts, ey - Math.cos(a) * ts);
-    bgX.strokeStyle = `rgba(255,204,51,${.09 + .06 * Math.sin(bgT * p.f * 3)})`;
-    bgX.lineWidth   = 1.1; bgX.stroke();
-  });
-
-  // Centre glow
-  const g = bgX.createRadialGradient(cx, cy, 0, cx, cy, 60);
-  g.addColorStop(0, 'rgba(255,204,51,0.08)');
-  g.addColorStop(1, 'transparent');
-  bgX.beginPath(); bgX.arc(cx, cy, 60, 0, Math.PI * 2);
-  bgX.fillStyle = g; bgX.fill();
-
-  // Centre dot
-  bgX.beginPath(); bgX.arc(cx, cy, 2.5, 0, Math.PI * 2);
-  bgX.fillStyle = `rgba(255,204,51,${.5 + .3 * Math.sin(bgT * 3)})`; bgX.fill();
-
-  requestAnimationFrame(drawBg);
-}
-drawBg();
+    // Connections between nearby points
+    for (let i = 0; i < N; i++) {
+      for (let j = i + 1; j < N; j++) {
+        const dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y;
+        const d  = Math.sqrt(dx * dx + dy * dy);
+        if (d < 120) {
+          ctx.beginPath();
+          ctx.moveTo(pts[i].x, pts[i].y);
+          ctx.lineTo(pts[j].x, pts[j].y);
+          ctx.strokeStyle = 'rgba(88,166,255,' + (0.04 * (1 - d / 120)) + ')';
+          ctx.lineWidth = 0.7;
+          ctx.stroke();
+        }
+      }
+      // Mouse influence lines
+      const dx2 = pts[i].x - mx, dy2 = pts[i].y - my;
+      const d2  = Math.sqrt(dx2 * dx2 + dy2 * dy2);
+      if (d2 < 150) {
+        ctx.beginPath();
+        ctx.moveTo(pts[i].x, pts[i].y);
+        ctx.lineTo(mx, my);
+        ctx.strokeStyle = 'rgba(61,201,192,' + (0.05 * (1 - d2 / 150)) + ')';
+        ctx.lineWidth = 0.7;
+        ctx.stroke();
+      }
+      // Dots
+      ctx.beginPath();
+      ctx.arc(pts[i].x, pts[i].y, pts[i].r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(88,166,255,0.3)';
+      ctx.fill();
+    }
+    requestAnimationFrame(frame);
+  }
+  frame();
+})();
