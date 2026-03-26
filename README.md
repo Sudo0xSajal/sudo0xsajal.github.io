@@ -128,7 +128,7 @@ STATUS  :  ● Seeking Entry-Level Role
 |---|---|
 | Email | [sajalhaldar2004@gmail.com](mailto:sajalhaldar2004@gmail.com) |
 | GitHub | [github.com/Sudo0xSajal](https://github.com/Sudo0xSajal) |
-| LinkedIn | [linkedin.com/in/sajalhaldar16](https://linkedin.com/in/sajalhaldar16) |
+| LinkedIn | [linkedin.com/in/sajalhaldar16](https://linkedin.com/in/sajalhaldar) |
 
 ---
 
